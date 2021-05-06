@@ -1,0 +1,226 @@
+.blur {
+    filter: blur(10px);
+}
+
+*:focus{
+    outline: none;
+}
+
+body{
+
+    margin: 65px auto;
+    padding: 0;
+    color: rgb(58, 58, 61);
+    font-family: 'Roboto', sans-serif;
+
+    main{
+        width: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        .profile-cover{
+            position: relative;
+            height: 60%;
+            width: 100%;
+            // background-color: rgb(251, 251, 251);
+            background: linear-gradient(rgb(172, 209, 233), white, white, white, white);
+            box-shadow: 2px 2px 1px 0px rgb(216, 224, 224);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+    
+            .profile-cover-photo{
+                position: relative;
+                height: 55%;
+                width: 50%;
+                min-width: 550px;
+                border-bottom-left-radius: 12px;
+                border-bottom-right-radius: 12px;
+                border: 1px solid rgb(173, 173, 173);
+                border-top: 1px solid blue;
+                background-color: white;
+            }
+    
+            .profile-display-photo{
+                position: relative;
+                height: 140px;
+                width: 140px;
+                border-radius: 50%;
+                margin-top: -4%;
+                margin-bottom: 1%;
+                background-color: white;
+    
+                img{
+                    position: absolute;
+                    height: 140px;
+                    width: 140px;
+                    border-radius: 50%;
+                }
+            }
+    
+            .utilities{
+                margin-top: 1%;
+                padding-top: 0.5%;
+                padding-bottom: 0.5%;
+                width: 43%;
+                min-width: 500px;
+                border-top: 1px solid rgb(189, 187, 187);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .edit-profile{
+                    background: rgb(35, 127, 189);
+                    color: white;
+                    font-size: 18px;
+                    border: none;
+                    height: 90%;
+                    width: 140px;
+                    box-shadow: 0px 2px 2px 0.6px rgb(219, 219, 219);
+                    border-radius: 10px;
+                    margin-right: 1%;
+                }
+
+                .update-form{
+                    position: absolute;
+                    height: 500px;
+                    width: 400px;
+                    // box-shadow: 0px 4px 2px 1px rgb(219, 219, 219);
+                    border: 1px solid rgb(219, 219, 219);
+                    border-radius: 8px;
+                    left: 54%;
+                    top: 104%;
+                }
+            }
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 9; /* Sit on top */
+            border: 1px solid rgb(173, 173, 173);
+            left: 35%;
+            top: 20%;
+            width: 600px; /* Full width */
+            height: 500px; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: white;
+
+            // header of update
+            .update-header{
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                // modal heading
+                h3{
+                    color: rgb(36, 131, 219);
+                    margin-top: 2%;
+                    margin-left: 2%;
+                }
+
+                    /* The Close Button */
+                .close {
+                    color: #aaa;
+                    font-size: 36px;
+                    font-weight: bold;
+                    margin-right: 3%;
+                    margin-top: 0.5%;
+                }
+                
+                .close:hover, .close:focus {
+                    color: black;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+            }
+
+            /* Modal Content/Box */
+            .modal-content {
+                position: relative;
+                background-color: #fefefe;
+                padding: 20px;
+                border: none;
+                border-top: 1px solid rgb(209, 209, 209);
+                width: 100%; /* Could be more or less, depending on screen size */
+                height: 89%;
+
+                label{
+                    margin-bottom: 1.5%;
+                }
+
+                input[type=text], input[type=email] {
+                    height: 38px;
+                    border-radius: 10px;
+                    padding-left: 1%;
+                    border: 1px solid rgb(216, 216, 216);
+                    width: 70%;
+                    margin-bottom: 4%;
+                }
+
+                #update-btn {
+                    position: absolute;
+                    bottom: 3%;
+                    right: 2%;
+                    height: 40px;
+                    width: 120px;
+                    color: white;
+                    border: none;
+                    background-color: rgb(36, 131, 219);
+                    border-radius: 10px;
+                }
+            }
+        }
+
+        .util-content{
+            position: sticky;
+            top: 2%;
+            width: auto;
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 28.509%;
+            margin-top: 1%;
+    
+            .card{
+                height: 500px;
+                width: 400px;
+                box-shadow: 0px 1px 1px 0.4px rgb(219, 219, 219);
+                border-radius: 8px;
+
+                span{
+                    height: 30px;
+                    width: 100%;
+                    font-size: 20px;
+                    font-weight: 500;
+                    padding-left: 12px;
+                    margin-top: 2%;
+                }
+            }
+
+            .about-section{
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        .user-posts {
+            display: inline-block;
+            position: relative;
+            height: auto;
+            width: 27%;
+            min-height: 500px;
+            min-width: 400px;
+            margin-top: 1%;
+            margin-left: 3%;
+            border: 1px solid rgb(206, 202, 202);
+            border-radius: 7px;
+            box-shadow: 0px 1px 1px 0.4px rgb(219, 219, 219);
+            overflow-y: scroll;
+            overflow-x: hidden;
+            overflow-wrap: break-word;
+        }
+    }
+}

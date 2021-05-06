@@ -1,0 +1,15 @@
+<div id="right-home-friends">
+    
+    <ul>
+
+        <% for (let u of all_users) { %>
+        
+            <li>
+                <a href="/user/profile/<%= u.id %>"><%= u.name %> </a>
+            </li>
+
+        <% } %>
+
+    </ul>
+
+</div>

@@ -1,0 +1,17 @@
+body{
+    text-align: center;
+    margin-top: 70px;
+    background-color: white;
+
+    #app_home_bg{
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: -10;
+        height: 100vh;
+        min-height: 800px;
+        min-width: 1400px;
+        // filter: brightness(1) hue-rotate(130deg) saturate(4) contrast(2.95);
+        filter: brightness(1) hue-rotate(29deg) saturate(1) contrast(5);
+    }
+}

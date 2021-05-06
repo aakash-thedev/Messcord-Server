@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="/assets/css/header.css">
+
+<header id="header">
+
+    <div id="logo-section">
+        <a href="/logo-action">
+            <img src="/assets/images/logo2.png" alt="logo" id="logo"> <span>Codemate</span>
+        </a>
+    </div>
+
+    <% if (locals.user) { %>
+
+        <div class="right-section">
+
+            <span>
+                <a href="/user/profile/<%= locals.user.id %>" id="user-name"><%= String(locals.user.name).indexOf(' ') == -1 ? String(locals.user.name) : String(locals.user.name).substring(0, String(locals.user.name).indexOf(' ') + 1) %></a>
+            </span>
+            
+            <span id="logout">
+                <a href="/user/sign-out">Sign Out</a>
+            </span>
+            
+        </div>
+
+    <% } else { %>
+
+        <div class="right-section">
+
+            <span>
+                <a href="/sign-in">Sign in</a>
+            </span>
+    
+            <span>
+                <a href="/sign-up">Create Account</a>
+            </span>
+
+        </div>
+        
+    <% } %> 
+</header>
