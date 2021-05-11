@@ -1,0 +1,33 @@
+{
+  "name": "ping",
+  "version": "1.0.0",
+  "description": "Ping is a messaging app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aakash-thedev/Ping.git"
+  },
+  "keywords": [
+    "Message",
+    "Messaging"
+  ],
+  "author": "Aakash Srivastava",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aakash-thedev/Ping/issues"
+  },
+  "homepage": "https://github.com/aakash-thedev/Ping#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.7",
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
+  }
+}
