@@ -1,6 +1,13 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+const port = 8000;
 
 const cookieParser = require('cookie-parser');
 app.use(express.urlencoded());
@@ -8,16 +15,25 @@ app.use(cookieParser());
 
 const db = require('./config/mongoose');
 
-const routers = require('./routes/index');
-
 const passport = require('passport');
-const JWTStrategy = require('./config/passport_jwt');
+const JWTStategy = require('./config/passport_jwt');
 
+// ------------------------------ creating a chat server to connet with socket.io --------------------------- //
+
+const chatServer = require('http').Server(app);
+const chatSockets = require('./config/chats_sockets').chatSockets(chatServer);
+chatServer.listen(8080);
+
+console.log(`Chat Server Listening on port 8080`);
+
+// ------------------------------------------------------------------------------------------------------------//
+
+const routers = require('./routes/index');
 app.use('/', routers);
 
 app.listen(port, function(err){
 
     if(err) { console.log(err); return; }
 
-    console.log(`Ping running on port ${port}`);
+    console.log(`Messcord Server Running on port ${port}`);
 });

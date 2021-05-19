@@ -1,6 +1,25 @@
 const User = require('../../../models/user');
 const jwt = require('jsonwebtoken');
 
+module.exports.fetchAll = async function(req, res) {
+
+    try{
+        let allUsers = await User.find({});
+
+        return res.status(200).json({
+            data:{
+                users: allUsers
+            }
+        });
+    }
+
+    catch(err){
+        return res.status(404).json({
+            message: "Users Not Found"
+        });
+    }
+}
+
 module.exports.signUp = async function(req, res) {
 
     // console.log("USER - ", req.body);
@@ -39,24 +58,38 @@ module.exports.signUp = async function(req, res) {
 
 module.exports.signIn = async function(req, res) {
 
+    console.log("BODY",req.body);
+
+
     // when we will get email and password from user
     // we will generate the JWT 
     try{
         let user = await User.findOne({email : req.body.email});
 
-        if(!user || user.password != req.body.password){
+        if(!user){
             return res.json(422, {
-                message: "Invalid Username/Password"
+                message: "Not Found in database"
             });
         }
 
+        if(user.password != req.body.password){
+            return res.json(422, {
+                message: "Wrong Password"
+            });
+
+        }
+
         return res.json(200, {
-            message: "Logged in successfully | Here's your token",
+            message: "Logged in successfully",
             data: {
+                email: req.body.email,
+                name: user.name,
                 token : jwt.sign(user.toJSON(), 'ping', {expiresIn: '1000000'})
+                // this above token will be used for further queries inside the app like sending/deleting etc
             }
         });
     }
+
     catch(err) {
         console.log('***********error- ',err);
         return res.json(500, {

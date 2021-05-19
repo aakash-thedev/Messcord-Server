@@ -24,6 +24,17 @@ const userSchema = mongoose.Schema({
     password : {
         type : String,
         required : true,
+    },
+
+    messages: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Message'
+        }
+    ],
+
+    lastMessage: {
+        type: String
     }
 
 },{
