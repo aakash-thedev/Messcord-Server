@@ -26,13 +26,6 @@ const userSchema = mongoose.Schema({
         required : true,
     },
 
-    messages: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Message'
-        }
-    ],
-
     lastMessage: {
         type: String
     }

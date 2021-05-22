@@ -1,3 +1,5 @@
+const Message = require('../models/message');
+
 // we will create socket which will recieve a chatServer
 
 // now this is basically our OBSERVER which will manage any new connections
@@ -9,14 +11,8 @@ module.exports.chatSockets = function(socketServer) {
     io.sockets.on('connection', function(socket){
 
         console.log('New Socket Connection Established', socket.id);
-        // console.log("**************", socket.handshake.query);
 
         socket.on('join_room', function(data) {
-
-            console.log(`${data.user_email} has requested to join ${data.chatRoom}`);
-
-            // plug in that socket, if data.chatRomm named room is present it will add the user in it
-            // if its not present then it will create a new room of that name.
 
             socket.join(data.chatRoom);
 

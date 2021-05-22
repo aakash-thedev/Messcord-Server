@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 module.exports.fetchAll = async function(req, res) {
 
     try{
-        let allUsers = await User.find({});
+        let allUsers = await User.find({}).populate('messages');
 
         return res.status(200).json({
             data:{
@@ -21,12 +21,6 @@ module.exports.fetchAll = async function(req, res) {
 }
 
 module.exports.signUp = async function(req, res) {
-
-    // console.log("USER - ", req.body);
-
-    // if(req.body.password !== req.body.password2){
-    //     return res.redirect('back');
-    // }
 
     //check if given username already exists
     let user = await User.findOne({email : req.body.email});
@@ -82,6 +76,7 @@ module.exports.signIn = async function(req, res) {
         return res.json(200, {
             message: "Logged in successfully",
             data: {
+                id: user._id,
                 email: req.body.email,
                 name: user.name,
                 token : jwt.sign(user.toJSON(), 'ping', {expiresIn: '1000000'})
