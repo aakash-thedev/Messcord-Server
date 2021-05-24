@@ -13,11 +13,13 @@ module.exports.getMessages = async function(req, res) {
     // console.log('******************',sendersID, '& ' , recieversID);
 
     // make a query on Message Model
-    let messages1 = await Message.find({sender: sendersID, reciever: recieversID}).populate('sender');
-    let messages2 = await Message.find({sender: recieversID, reciever: sendersID}).populate('sender');
+    let messages1 = await Message.find({sender: sendersID, reciever: recieversID}).populate('sender').populate('reciever').sort('-createdAt');
+    let messages2 = await Message.find({sender: recieversID, reciever: sendersID}).populate('sender').populate('reciever').sort('-createdAt');
 
     // combine both arrays
-    let updatedArray = messages1.concat(messages2);
+    let updatedArray = messages1.concat(messages2).sort(function(a, b){
+        return a.createdAt - b.createdAt
+    });
 
     // console.log(updatedArray);
 
@@ -41,8 +43,6 @@ module.exports.create = async function(req, res) {
     var endUserID = req.params.id;
     const messageContent = req.body.message;
     var sendersID = req.body.senders_id;
-
-    console.log(req.body);
 
     // find the user in database
     const EndUser = await User.findById(endUserID);
