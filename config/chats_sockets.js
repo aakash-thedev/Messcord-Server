@@ -12,19 +12,25 @@ module.exports.chatSockets = function(socketServer) {
 
         console.log('New Socket Connection Established', socket.id);
 
-        socket.on('join_room', function(data) {
+        socket.on('join_request', function(data) {
+            // data : { from: ___, to: ____}
 
-            socket.join(data.chatRoom);
+            const rooms = [data.from, data.to];
+
+            rooms.forEach(room => socket.join(room));
+            // socket.join(data.to);
+
+            console.log(`${data.from} has requested to join with ${data.to}`);
 
             // inside that chatroom emit a message of user_joined
-            io.in(data.chatRoom).emit('user_joined', data.user_email);
+            io.to(data.from).to(data.to).emit('user_joined', data);
 
         });
 
         socket.on('send_message', function(data){
 
             // console.log(`${data.user_email}- ${data.message}`);
-            io.in(data.chatRoom).emit('receive_message', data);
+            io.to(data.to).emit('receive_message', data);
         });
 
         // when any socket will get disconnected
