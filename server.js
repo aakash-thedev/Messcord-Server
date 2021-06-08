@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 const cookieParser = require('cookie-parser');
 app.use(express.urlencoded());

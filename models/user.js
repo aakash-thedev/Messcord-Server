@@ -33,7 +33,14 @@ const userSchema = mongoose.Schema({
 
     lastMessage: {
         type: String
-    }
+    },
+
+    conversations : [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 
 },{
     timeStamps: true

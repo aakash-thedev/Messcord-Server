@@ -22,6 +22,8 @@ module.exports.fetchAll = async function(req, res) {
 
 module.exports.signUp = async function(req, res) {
 
+    console.log(req.body);
+
     //check if given username already exists
     let user = await User.findOne({email : req.body.email});
 
@@ -30,15 +32,18 @@ module.exports.signUp = async function(req, res) {
         let newUser = await User.create({
             name : req.body.name,
             email : req.body.email,
-            password : req.body.password
+            password : req.body.password,
+            avatar: req.body.avatar
         });
-
-        // console.log("User Created - ", newUser);
 
         // if user is created successfully go to signin page
         return res.status(200).json({
             message: "New User Created",
-            newUser : newUser
+            newUser : {
+                name : req.body.name,
+                email : req.body.email,
+                avatar: req.body.avatar
+            }
         });
 
     }
